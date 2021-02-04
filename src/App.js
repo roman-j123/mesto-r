@@ -39,7 +39,7 @@ function App() {
               <span className="popup__input-error" id="name_error"></span>
             </section>
             <section className="popup__section">
-              <input type="text" className="popup__input popup__input_type_description" name="description" deffaultValue="" placeholder="Описание пользователя" minLength="2" maxLength="200" required />
+              <input type="text" className="popup__input popup__input_type_description" name="description" defaultValue="" placeholder="Описание пользователя" minLength="2" maxLength="200" required />
               <span className="popup__input-error" id="description_error"></span>
             </section>
             <button className="popup__button" type="submit" disabled>Сохранить</button>
