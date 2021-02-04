@@ -1,10 +1,11 @@
-import './App.css';
+import './index.css';
+import logo from './images/logo.svg';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <header className="header">
-        <img src="<%=require('./images/logo.svg')%>" className="header__logo" alt="Логотип сайта" />
+        <img src={logo} className="header__logo" alt="Логотип сайта" />
       </header>
       <main className="main">
         <section className="profile">
@@ -34,11 +35,11 @@ function App() {
           <fieldset className="popup__fieldset">
             <legend className="popup__header">Редактировать профиль</legend>
             <section className="popup__section">
-              <input type="text" className="popup__input popup__input_type_name" name="name" value="" placeholder="Имя пользователя" minlength="2" maxlength="40" required />
+              <input type="text" className="popup__input popup__input_type_name" name="name" value="" placeholder="Имя пользователя" minLength="2" maxLength="40" required />
               <span className="popup__input-error" id="name_error"></span>
             </section>
             <section className="popup__section">
-              <input type="text" className="popup__input popup__input_type_description" name="description" value="" placeholder="Описание пользователя" minlength="2" maxlength="200" required />
+              <input type="text" className="popup__input popup__input_type_description" name="description" value="" placeholder="Описание пользователя" minLength="2" maxLength="200" required />
               <span className="popup__input-error" id="description_error"></span>
             </section>
             <button className="popup__button" type="submit" disabled>Сохранить</button>
@@ -52,11 +53,11 @@ function App() {
         <form action="post" className="popup__form">
           <fieldset className="popup__fieldset">
             <legend className="popup__header">Новое место</legend>
-            <section class="popup__section">
-              <input type="text" className="popup__input popup__input_type_place" name="place" value="" placeholder="Название" minlength="2" maxlength="30" required />
+            <section className="popup__section">
+              <input type="text" className="popup__input popup__input_type_place" name="place" value="" placeholder="Название" minLength="2" maxLength="30" required />
               <span className="popup__input-error" id="place_error"></span>
             </section>
-            <section class="popup__section">
+            <section className="popup__section">
               <input type="url" className="popup__input popup__input_type_url" name="url" value="" placeholder="Ссылка на картинку" required />
               <span className="popup__input-error" id="url_error"></span>
             </section>
@@ -109,7 +110,7 @@ function App() {
         </div>
       </li>
     </template>
-  </div>
+  </>
   );
 }
 
