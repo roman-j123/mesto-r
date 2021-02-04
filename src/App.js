@@ -35,11 +35,11 @@ function App() {
           <fieldset className="popup__fieldset">
             <legend className="popup__header">Редактировать профиль</legend>
             <section className="popup__section">
-              <input type="text" className="popup__input popup__input_type_name" name="name" value="" placeholder="Имя пользователя" minLength="2" maxLength="40" required />
+              <input type="text" className="popup__input popup__input_type_name" name="name" defaultValue="" placeholder="Имя пользователя" minLength="2" maxLength="40" required />
               <span className="popup__input-error" id="name_error"></span>
             </section>
             <section className="popup__section">
-              <input type="text" className="popup__input popup__input_type_description" name="description" value="" placeholder="Описание пользователя" minLength="2" maxLength="200" required />
+              <input type="text" className="popup__input popup__input_type_description" name="description" deffaultValue="" placeholder="Описание пользователя" minLength="2" maxLength="200" required />
               <span className="popup__input-error" id="description_error"></span>
             </section>
             <button className="popup__button" type="submit" disabled>Сохранить</button>
@@ -54,11 +54,11 @@ function App() {
           <fieldset className="popup__fieldset">
             <legend className="popup__header">Новое место</legend>
             <section className="popup__section">
-              <input type="text" className="popup__input popup__input_type_place" name="place" value="" placeholder="Название" minLength="2" maxLength="30" required />
+              <input type="text" className="popup__input popup__input_type_place" name="place" defaultValue="" placeholder="Название" minLength="2" maxLength="30" required />
               <span className="popup__input-error" id="place_error"></span>
             </section>
             <section className="popup__section">
-              <input type="url" className="popup__input popup__input_type_url" name="url" value="" placeholder="Ссылка на картинку" required />
+              <input type="url" className="popup__input popup__input_type_url" name="url" defaultValue="" placeholder="Ссылка на картинку" required />
               <span className="popup__input-error" id="url_error"></span>
             </section>
             <button className="popup__button" type="submit">Создать</button>
@@ -89,7 +89,7 @@ function App() {
         <fieldset className="popup__fieldset">
           <legend className="popup__header">Обновить аватар</legend>
             <section className="popup__section">
-              <input type="url" className="popup__input popup__input_type_url" name="avatar" value="" placeholder="Ссылка на картинку" required />
+              <input type="url" className="popup__input popup__input_type_url" name="avatar" defaultValue="" placeholder="Ссылка на картинку" required />
               <span className="popup__input-error" id="avatar_error"></span>
             </section>
           <button className="popup__button" type="submit">Сохранить</button>
