@@ -1,12 +1,9 @@
 import './index.css';
-import logo from './images/logo.svg';
-
+import Header from './components/Header.js';
 function App() {
   return (
     <>
-      <header className="header">
-        <img src={logo} className="header__logo" alt="Логотип сайта" />
-      </header>
+      <Header />
       <main className="main">
         <section className="profile">
           <button className="profile__avatar-button">
