@@ -1,14 +1,14 @@
 import './index.css';
 import Header from './components/Header.js';
 import Main from './components/Main.js';
+import Footer from './components/Footer.js';
 function App() {
   return (
     <>
       <Header />
       <Main />
-    <footer className="footer">
-      <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
-    </footer>
+      <Footer />
+
     <div className="popup popup_type_edit">
       <div className="popup__container">
         <button className="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
