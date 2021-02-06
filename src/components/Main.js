@@ -1,4 +1,24 @@
+import { useEffect, useState } from 'react'; 
+import api from '../utils/api.js'
+import Card from './Card.js';
+
 function Main() {
+  const [userName, setUserName] = useState('Пользователь');
+  const [userDescription, setUserDescription] = useState('Описание');
+  const [userAvatar, setUserAvatar] = useState();
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    api.getUser().then(response => {
+      setUserName(response.name);
+      setUserDescription(response.about);
+      setUserAvatar(response.avatar);
+    })
+    api.getCards().then(response => {
+      setCards(response);
+    });
+  },[])
+
   function handleEditAvatarClick() {
     const popupTypeAvatar = document.querySelector('.popup_type_avatar');
     popupTypeAvatar.classList.add('popup_open');
@@ -21,10 +41,10 @@ function Main() {
           aria-label="Редактировать аватар пользователя" 
           onClick={handleEditAvatarClick}
         >
-          <img src="link" className="profile__avatar" alt="Описание" />
+          <img src={userAvatar} className="profile__avatar" alt="Описание" />
         </button>
         <div className="profile__info">
-          <h1 className="profile__name">Имя пользователя</h1>
+          <h1 className="profile__name">{userName}</h1>
             <button 
               className="profile__button profile__button_type_edit" 
               type="button" 
@@ -32,7 +52,7 @@ function Main() {
               aria-label="Редактировать профиль" 
               onClick={handleEditProfileClick}
             ></button>
-          <p className="profile__description">Описание пользователя</p>
+          <p className="profile__description">{userDescription}</p>
         </div>
         <button 
           className="profile__button profile__button_type_add" 
@@ -44,7 +64,16 @@ function Main() {
       </section>
       <section className="elements">
         <ul className="elements__list">
-
+          {
+          cards.map(item => 
+            <Card 
+              key={item._id} 
+              name={item.name} 
+              link={item.link} 
+              owner={item.owner} 
+              likes={item.likes}
+            />
+          )}
         </ul>
       </section>
     </main>
