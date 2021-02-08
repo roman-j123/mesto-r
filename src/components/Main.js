@@ -2,46 +2,42 @@ import { useEffect, useState } from 'react';
 import api from '../utils/api.js'
 import Card from './Card.js';
 
-function Main() {
+function Main(props) {
   const [userName, setUserName] = useState('Пользователь');
   const [userDescription, setUserDescription] = useState('Описание');
   const [userAvatar, setUserAvatar] = useState();
   const [cards, setCards] = useState([]);
-
   useEffect(() => {
     api.getUser().then(response => {
       setUserName(response.name);
       setUserDescription(response.about);
       setUserAvatar(response.avatar);
+    }).catch(err => {
+      console.log(`Error: ${err}`)
     })
     api.getCards().then(response => {
       setCards(response);
+    }).catch(err => {
+      console.log(`Error: ${err}`)
     });
   },[])
-
-  function handleEditAvatarClick() {
-    const popupTypeAvatar = document.querySelector('.popup_type_avatar');
-    popupTypeAvatar.classList.add('popup_open');
-  }
-  function handleEditProfileClick() {
-    const popupTypeProfile = document.querySelector('.popup_type_edit');
-    popupTypeProfile.classList.add('popup_open');
-  }
-  function handleAddPlaceClick() {
-    const popupTypeAddPhoto = document.querySelector('.popup_type_photo');
-    popupTypeAddPhoto.classList.add('popup_open');
-  }
+  function handleClick() {
+    props.onCardClick({
+      name: props.name,
+      link: props.link
+    });
+  }  
   return (
     <main className="main">
       <section className="profile">
         <button 
           className="profile__avatar-button" 
           type="button" 
-          title="Редактировать аватар пользователя" 
+          title={`Редактировать аватар ${userName}`}
           aria-label="Редактировать аватар пользователя" 
-          onClick={handleEditAvatarClick}
+          onClick={props.onEditAvatar}
         >
-          <img src={userAvatar} className="profile__avatar" alt="Описание" />
+          <img src={userAvatar} className="profile__avatar" alt={userName} />
         </button>
         <div className="profile__info">
           <h1 className="profile__name">{userName}</h1>
@@ -50,7 +46,7 @@ function Main() {
               type="button" 
               title="Редактировать профиль" 
               aria-label="Редактировать профиль" 
-              onClick={handleEditProfileClick}
+              onClick={props.onEditProfile}
             ></button>
           <p className="profile__description">{userDescription}</p>
         </div>
@@ -59,7 +55,7 @@ function Main() {
           type="button" 
           title="Добавить фотографию" 
           aria-label="Добавить фотографию" 
-          onClick={handleAddPlaceClick}
+          onClick={props.onAddPlace}
         ></button>
       </section>
       <section className="elements">
@@ -70,8 +66,9 @@ function Main() {
               key={item._id} 
               name={item.name} 
               link={item.link} 
-              owner={item.owner} 
+              owner={item.owner}
               likes={item.likes}
+              onCardClick={handleClick}
             />
           )}
         </ul>
