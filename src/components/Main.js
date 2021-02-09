@@ -21,12 +21,6 @@ function Main(props) {
       console.log(`Error: ${err}`)
     });
   },[])
-  function handleClick() {
-    props.onCardClick({
-      name: props.name,
-      link: props.link
-    });
-  }  
   return (
     <main className="main">
       <section className="profile">
@@ -64,11 +58,8 @@ function Main(props) {
           cards.map(item => 
             <Card 
               key={item._id} 
-              name={item.name} 
-              link={item.link} 
-              owner={item.owner}
-              likes={item.likes}
-              onCardClick={handleClick}
+              card={item}
+              onCardClick={props.onCardClick}
             />
           )}
         </ul>
